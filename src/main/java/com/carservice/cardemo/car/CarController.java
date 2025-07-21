@@ -35,6 +35,14 @@ public class CarController {
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 
     }
+
+    @DeleteMapping("/cars/{id}")
+    public ResponseEntity<String> deleteCar(@PathVariable Long id){
+        boolean deleted = carservice.deleteCarById(id);
+        if (deleted)
+            return new ResponseEntity<>("Car Deleted Successfully", HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
 }
 
 

@@ -5,6 +5,7 @@ import com.carservice.cardemo.car.CarService;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 @Service
@@ -32,5 +33,18 @@ public class CarServiceImpl implements CarService {
             }
         }
             return null;
+    }
+
+    @Override
+    public boolean deleteCarById(Long id) {
+        Iterator<Car> iterator = cars.iterator();
+        while (iterator.hasNext()){
+            Car car = iterator.next();
+            if (car.getId().equals(id)){
+                iterator.remove();
+                return true;
+            }
+        }
+        return false;
     }
 }

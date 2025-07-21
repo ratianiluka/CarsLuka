@@ -7,4 +7,6 @@ public interface CarService {
     void createCar(Car car);
 
     Car getCarById(Long id);
+
+    boolean deleteCarById(Long id);
 }
