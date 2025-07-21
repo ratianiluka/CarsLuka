@@ -43,6 +43,13 @@ public class CarController {
             return new ResponseEntity<>("Car Deleted Successfully", HttpStatus.OK);
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
+@PutMapping("/cars/{id}")
+    public ResponseEntity<String> updateCar(@PathVariable Long id, @RequestBody Car updatedCar){
+        boolean updated = carservice.updateCar(id, updatedCar);
+        if (updated)
+            return new ResponseEntity<>("Car Updated Successfully", HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
 }
 
 

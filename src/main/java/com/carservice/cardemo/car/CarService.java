@@ -9,4 +9,6 @@ public interface CarService {
     Car getCarById(Long id);
 
     boolean deleteCarById(Long id);
+
+    boolean updateCar(Long id, Car updatedCar);
 }

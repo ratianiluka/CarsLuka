@@ -47,4 +47,17 @@ public class CarServiceImpl implements CarService {
         }
         return false;
     }
+
+    @Override
+    public boolean updateCar(Long id, Car updatedCar) {
+        for (Car car : cars){
+            if (car.getId().equals(id)) {
+                car.setModel(updatedCar.getModel());
+                car.setYear(updatedCar.getYear());
+                return true;
+
+            }
+        }
+        return false;
+    }
 }
