@@ -1,5 +1,7 @@
 package com.carservice.cardemo.car;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,21 +17,24 @@ public class CarController {
     }
 
     @GetMapping("/cars")
-    public List<Car> findAll(){
-        return carservice.findAll();
+    public ResponseEntity<List<Car>> findAll(){
+        return new ResponseEntity<>(carservice.findAll(), HttpStatus.OK);
     }
 
     @PostMapping("/cars")
-    public String createCar(@RequestBody Car car){
+    public ResponseEntity<String> createCar(@RequestBody Car car){
         carservice.createCar(car);
-        return "Car added successfully";
+        return new ResponseEntity<>( "Car added successfully", HttpStatus.CREATED);
     }
 
     @GetMapping("/cars/{id}")
-    public Car getCarById(@PathVariable Long id){
+    public ResponseEntity<Car> getCarById(@PathVariable Long id){
         Car car = carservice.getCarById(id);
         if (car != null)
-            return car;
-        return new Car(1L, 0, "TestModel");
+            return new ResponseEntity<>(car, HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+
     }
 }
+
+
