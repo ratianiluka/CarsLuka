@@ -13,10 +13,25 @@ public class CarServiceImpl implements CarService {
     private List<Car> cars = new ArrayList<>();
     private Long nextId = 1L;
 
+
+    public CarServiceImpl(){
+        cars.add(new Car(nextId++, 2015, "Mercedes C63"));
+        cars.add(new Car(nextId++, 2016, "BMW F10"));
+        cars.add(new Car(nextId++, 2017, "Toyota Camry"));
+        cars.add(new Car(nextId++, 2018, "Audi A8"));
+        cars.add(new Car(nextId++, 2019, "Honda Civic"));
+        cars.add(new Car(nextId++, 2020, "Nissan Altima"));
+        cars.add(new Car(nextId++, 2021, "Porsche Macan"));
+
+    }
+
+
     @Override
     public List<Car> findAll() {
         return cars;
     }
+
+
 
     @Override
     public void createCar(Car car) {

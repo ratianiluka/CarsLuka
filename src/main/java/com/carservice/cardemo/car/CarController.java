@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
+@RequestMapping("/cars")
 public class CarController {
     private CarService carservice;
 
@@ -16,18 +17,18 @@ public class CarController {
         this.carservice = carservice;
     }
 
-    @GetMapping("/cars")
+    @GetMapping
     public ResponseEntity<List<Car>> findAll(){
         return new ResponseEntity<>(carservice.findAll(), HttpStatus.OK);
     }
 
-    @PostMapping("/cars")
+    @PostMapping
     public ResponseEntity<String> createCar(@RequestBody Car car){
         carservice.createCar(car);
         return new ResponseEntity<>( "Car added successfully", HttpStatus.CREATED);
     }
 
-    @GetMapping("/cars/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<Car> getCarById(@PathVariable Long id){
         Car car = carservice.getCarById(id);
         if (car != null)
@@ -36,14 +37,14 @@ public class CarController {
 
     }
 
-    @DeleteMapping("/cars/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteCar(@PathVariable Long id){
         boolean deleted = carservice.deleteCarById(id);
         if (deleted)
             return new ResponseEntity<>("Car Deleted Successfully", HttpStatus.OK);
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
-@PutMapping("/cars/{id}")
+@PutMapping("/{id}")
     public ResponseEntity<String> updateCar(@PathVariable Long id, @RequestBody Car updatedCar){
         boolean updated = carservice.updateCar(id, updatedCar);
         if (updated)
