@@ -15,13 +15,14 @@ public class CarServiceImpl implements CarService {
 
 
     public CarServiceImpl(){
-        cars.add(new Car(nextId++, 2015, "Mercedes C63"));
-        cars.add(new Car(nextId++, 2016, "BMW F10"));
-        cars.add(new Car(nextId++, 2017, "Toyota Camry"));
-        cars.add(new Car(nextId++, 2018, "Audi A8"));
-        cars.add(new Car(nextId++, 2019, "Honda Civic"));
-        cars.add(new Car(nextId++, 2020, "Nissan Altima"));
-        cars.add(new Car(nextId++, 2021, "Porsche Macan"));
+        cars.add(new Car(nextId++, "Mercedes C63", 2015));
+        cars.add(new Car(nextId++, "BMW F10", 2016));
+        cars.add(new Car(nextId++, "Toyota Camry", 2017));
+        cars.add(new Car(nextId++, "Audi A8", 2018));
+        cars.add(new Car(nextId++, "Honda Civic", 2019));
+        cars.add(new Car(nextId++, "Nissan Altima", 2020));
+        cars.add(new Car(nextId++, "Porsche Macan", 2021));
+
 
     }
 
