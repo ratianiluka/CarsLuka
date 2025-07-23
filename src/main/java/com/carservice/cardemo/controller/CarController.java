@@ -1,11 +1,11 @@
-package com.carservice.cardemo.car;
+package com.carservice.cardemo.controller;
 
+import com.carservice.cardemo.model.Car;
+import com.carservice.cardemo.service.CarService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -23,9 +23,9 @@ public class CarController {
     }
 
     @PostMapping
-    public ResponseEntity<String> createCar(@RequestBody Car car){
-        carservice.createCar(car);
-        return new ResponseEntity<>( "Car added successfully", HttpStatus.CREATED);
+    public ResponseEntity<Car> createCar(@RequestBody Car car){
+        Car createdCar = carservice.createCar(car);
+        return new ResponseEntity<>(createdCar, HttpStatus.CREATED);
     }
 
     @GetMapping("/{id}")
@@ -38,19 +38,21 @@ public class CarController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> deleteCar(@PathVariable Long id){
+    public ResponseEntity<Void> deleteCar(@PathVariable Long id){
         boolean deleted = carservice.deleteCarById(id);
         if (deleted)
-            return new ResponseEntity<>("Car Deleted Successfully", HttpStatus.OK);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
-@PutMapping("/{id}")
-    public ResponseEntity<String> updateCar(@PathVariable Long id, @RequestBody Car updatedCar){
-        boolean updated = carservice.updateCar(id, updatedCar);
-        if (updated)
-            return new ResponseEntity<>("Car Updated Successfully", HttpStatus.OK);
+    @PutMapping("/{id}")
+    public ResponseEntity<Car> updateCar(@PathVariable Long id, @RequestBody Car updatedCar) {
+        Car updated = carservice.updateCar(id, updatedCar);
+        if (updated != null) {
+            return new ResponseEntity<>(updated, HttpStatus.OK);
+        }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
+
 }
 
 

@@ -1,7 +1,7 @@
-package com.carservice.cardemo.car.impl;
+package com.carservice.cardemo.service.impl;
 
-import com.carservice.cardemo.car.Car;
-import com.carservice.cardemo.car.CarService;
+import com.carservice.cardemo.model.Car;
+import com.carservice.cardemo.service.CarService;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -34,9 +34,10 @@ public class CarServiceImpl implements CarService {
 
 
     @Override
-    public void createCar(Car car) {
+    public Car createCar(Car car) {
         car.setId(nextId++);
         cars.add(car);
+        return car;
 
     }
 
@@ -64,15 +65,14 @@ public class CarServiceImpl implements CarService {
     }
 
     @Override
-    public boolean updateCar(Long id, Car updatedCar) {
-        for (Car car : cars){
+    public Car updateCar(Long id, Car updatedCar) {
+        for (Car car : cars) {
             if (car.getId().equals(id)) {
                 car.setModel(updatedCar.getModel());
                 car.setYear(updatedCar.getYear());
-                return true;
-
+                return car;
             }
         }
-        return false;
+        return null;
     }
 }

@@ -1,4 +1,4 @@
-package com.carservice.cardemo.car;
+package com.carservice.cardemo.model;
 
 public class Car {
     private Long id;
