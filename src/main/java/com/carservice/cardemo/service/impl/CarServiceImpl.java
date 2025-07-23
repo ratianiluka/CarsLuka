@@ -4,6 +4,7 @@ import com.carservice.cardemo.model.Car;
 import com.carservice.cardemo.service.CarService;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -15,14 +16,13 @@ public class CarServiceImpl implements CarService {
 
 
     public CarServiceImpl(){
-        cars.add(new Car(nextId++, "Mercedes C63", 2015));
-        cars.add(new Car(nextId++, "BMW F10", 2016));
-        cars.add(new Car(nextId++, "Toyota Camry", 2017));
-        cars.add(new Car(nextId++, "Audi A8", 2018));
-        cars.add(new Car(nextId++, "Honda Civic", 2019));
-        cars.add(new Car(nextId++, "Nissan Altima", 2020));
-        cars.add(new Car(nextId++, "Porsche Macan", 2021));
-
+        cars.add(new Car(nextId++, "Mercedes C63", LocalDate.of(2015, 5, 10)));
+        cars.add(new Car(nextId++, "BMW F10", LocalDate.of(2016, 6, 20)));
+        cars.add(new Car(nextId++, "Toyota Camry", LocalDate.of(2017, 3, 15)));
+        cars.add(new Car(nextId++, "Audi A8", LocalDate.of(2018, 7, 25)));
+        cars.add(new Car(nextId++, "Honda Civic", LocalDate.of(2019, 9, 5)));
+        cars.add(new Car(nextId++, "Nissan Altima", LocalDate.of(2020, 11, 12)));
+        cars.add(new Car(nextId++, "Porsche Macan", LocalDate.of(2021, 1, 30)));
 
     }
 

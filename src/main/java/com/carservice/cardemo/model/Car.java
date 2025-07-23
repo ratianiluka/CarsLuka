@@ -1,5 +1,6 @@
 package com.carservice.cardemo.model;
 
+import java.time.LocalDate;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -7,7 +8,7 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name="cars")
+@Table(name="car")
 
 public class Car {
 
@@ -15,8 +16,8 @@ public class Car {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name="Model")
+    @Column(name="model")
     private String model;
-    @Column(name="Year")
-    private int year;
+    @Column(name="year")
+    private LocalDate year;
 }
