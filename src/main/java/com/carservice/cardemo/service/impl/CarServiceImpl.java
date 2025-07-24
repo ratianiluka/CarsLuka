@@ -3,6 +3,7 @@ package com.carservice.cardemo.service.impl;
 import com.carservice.cardemo.model.Car;
 import com.carservice.cardemo.service.CarService;
 import org.springframework.stereotype.Service;
+import com.carservice.cardemo.exception.CarNotFound;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -49,7 +50,7 @@ public class CarServiceImpl implements CarService {
                 return car;
             }
         }
-            return null;
+            throw new CarNotFound(id);
     }
 
     @Override
@@ -62,7 +63,7 @@ public class CarServiceImpl implements CarService {
                 return true;
             }
         }
-        return false;
+        throw new CarNotFound(id);
     }
 
     @Override
@@ -74,6 +75,6 @@ public class CarServiceImpl implements CarService {
                 return car;
             }
         }
-        return null;
+        throw new CarNotFound(id);
     }
 }
