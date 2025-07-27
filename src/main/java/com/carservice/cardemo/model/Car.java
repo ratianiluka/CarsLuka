@@ -1,5 +1,6 @@
 package com.carservice.cardemo.model;
 
+<<<<<<< Updated upstream
 import java.time.LocalDate;
 import jakarta.persistence.*;
 import lombok.*;
@@ -9,6 +10,20 @@ import lombok.*;
 @NoArgsConstructor
 @Entity
 @Table(name="car")
+=======
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Entity
+@Table(name="cars")
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+>>>>>>> Stashed changes
 
 public class Car {
 
