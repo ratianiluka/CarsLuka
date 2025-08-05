@@ -17,6 +17,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 
 @Configuration
 @EnableMethodSecurity
@@ -27,9 +28,14 @@ public class SecurityCredentialsConfig {
     private final UserDetailsService userDetailsService;
     private final JwtConfig jwtConfig;
 
+//    @Bean
+//    public BCryptPasswordEncoder passwordEncoder() {
+//        return new BCryptPasswordEncoder();
+//    }
+
     @Bean
-    public BCryptPasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
+    public static NoOpPasswordEncoder passwordEncoder() {
+        return (NoOpPasswordEncoder) NoOpPasswordEncoder.getInstance();
     }
 
     @Bean
@@ -44,6 +50,7 @@ public class SecurityCredentialsConfig {
 
         return http
                 .csrf(csrf -> csrf.disable())
+                .formLogin(form -> form.disable())
                 .sessionManagement(sm -> sm.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .exceptionHandling(eh -> eh.authenticationEntryPoint(jwtAuthenticationEntryPoint))
                 .authorizeHttpRequests(auth -> auth
@@ -56,16 +63,9 @@ public class SecurityCredentialsConfig {
                                 "/configuration/**"
                         ).permitAll()
 
-                        .requestMatchers(HttpMethod.POST, "/api/generateJWT/**").permitAll()
-                        .requestMatchers(HttpMethod.POST, "/api/CommentController/**").permitAll()
-                        .requestMatchers(HttpMethod.POST, "/api/PostController/posts/**").permitAll()
-                        .requestMatchers(HttpMethod.POST, "/api/PostController/post/detail/**").permitAll()
-                        .requestMatchers(HttpMethod.POST, "/api/RoleController/**").permitAll()
-                        .requestMatchers(HttpMethod.POST, "/api/AppUserController/**").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/auth/login/**").permitAll()
 
-                        .requestMatchers("/api/PostController/**").hasRole("ADMIN")
-                        .requestMatchers("/api/CategoryController/**").hasRole("ADMIN")
-                        .requestMatchers("/api/CommentController/**").hasRole("ADMIN")
+                        .requestMatchers("/car/**").hasRole("ADMIN")
 
                         .anyRequest().authenticated()
                 )
